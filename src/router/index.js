@@ -1,10 +1,33 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Index from "../views/index";
+import Login from "../views/login";
+import Signup from "../views/signup";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: Index
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    component: Signup
+  },
+  /*  {
+    path: "/",
+    name: "Home",
+    component: Index
+  },*/
   {
     path: "/",
     name: "Home",
@@ -22,7 +45,8 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  mode: "history",
+  routes: routes
 });
 
 export default router;

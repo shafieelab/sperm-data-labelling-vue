@@ -81,6 +81,7 @@
 
 <script>
 const axios = require("axios");
+import { url } from "@/variables.js";
 
 export default {
   data: () => ({
@@ -113,18 +114,14 @@ export default {
         password: this.password
       };
       axios
-        .post(
-          "https://cors-anywhere.herokuapp.com/https://shafieelabdatalabeling.tk/login",
-          data,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers":
-                "Origin, X-Requested-With, Content-Type, Accept"
-            }
+        .post("https://cors-anywhere.herokuapp.com/" + url + "/login", data, {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Accept"
           }
-        )
+        })
 
         .then(response => {
           this.resp = response.data.user;
