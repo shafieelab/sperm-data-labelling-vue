@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="22px" viewBox="0 0 22 22" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon i *</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Abstract-v8" transform="translate(-1268.000000, -379.000000)">
+            <g id="Icons-/-24px-/-ic-info-24px" transform="translate(1267.000000, 378.000000)">
+                <g stroke-width="1" transform="translate(1.000000, 1.000000)">
+                    <path d="M11,1 C5.48028475,1 1,5.48028475 1,11 C1,16.5197153 5.48028475,21 11,21 C16.5197153,21 21,16.5197153 21,11 C21,5.48028475 16.5197153,1 11,1 Z"
+                          id="Shape" stroke="#9AA0A6" stroke-width="2" fill-rule="nonzero"></path>
+                    <polygon id="Path" fill="#9AA0A6" points="12 16 10 16 10 10 12 10"></polygon>
+                    <polygon id="Path" fill="#9AA0A6" points="12 8 10 8 10 6 12 6"></polygon>
+                </g>
+                <polygon id="Shape" fill-opacity="0" fill="#D8D8D8" points="0 0 24 0 24 24 0 24"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

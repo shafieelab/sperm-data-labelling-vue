@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icons / 16px / ic-16px-close</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Abstract-v8" transform="translate(-1294.000000, -417.000000)">
+            <g id="Floaty-Read-more-*" transform="translate(916.000000, 403.000000)">
+                <g id="Icons-/-16px-/-ic-16px-close" transform="translate(378.000000, 14.000000)">
+                    <g id="ic-16px-close">
+                        <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="16" height="16"></rect>
+                        <path d="M4,4 L12,12" id="Line" stroke="#BFBFBF" stroke-width="2"
+                              stroke-linecap="square"></path>
+                        <path d="M4,12 L12,4" id="Line" stroke="#BFBFBF" stroke-width="2"
+                              stroke-linecap="square"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

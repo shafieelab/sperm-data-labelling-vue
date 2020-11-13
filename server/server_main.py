@@ -6,15 +6,20 @@ import numpy as np
 from flask import Flask, g, send_file, request, jsonify, abort
 
 # slides = ['F039','F048','E952','F065','F014','E911','F067','F100','F109']
+from flask_cors import CORS
 
 
 app = Flask(__name__)
-dir_path = '/home/ubuntu/flask_server2'
-dir_path = '/home/hemanthkandula/WebstormProjects/sperm-data-labelling-vue/server'
+cors = CORS(app)
+
+# dir_path = '/home/ubuntu/flask_server'
+# dir_path = '/home/hemanthkandula/WebstormProjects/DataAnnotator/server'
+dir_path = '/home/hemanthkandula/WebstormProjects/DataAnnotator/server'
+dir_path = '/mnt/data_drive/flask_server'
 
 database = dir_path + "/DataLabellingAPI.db"
 image_path = dir_path + "/image_data/"
-set_size = 2
+set_size = 10
 
 
 def get_db():
@@ -41,7 +46,7 @@ if not os.path.isfile(database):
     with app.app_context():
         conn = get_db()
         print(conn)
-        conn.execute('CREATE TABLE User_Table (username TEXT PRIMARY KEY, password TEXT)')  # USER TABLE
+        conn.execute('CREATE TABLE User_Table (username TEXT PRIMARY KEY, password TEXT, usernameact TEXT)')  # USER TABLE
 
         conn.execute('CREATE TABLE Assigned_Table (id INTEGER PRIMARY KEY AUTOINCREMENT, '
                      'username TEXT, slide TEXT, slide_set INTEGER , UNIQUE (username,slide, slide_set))')  # Assigned TABLE
@@ -275,8 +280,8 @@ def create_new_user():
         return jsonify({'response': 'failed',
                         'error': 'User already exist!'})
     else:
-
-        q = "INSERT INTO User_Table VALUES ('" + user_data['username'] + "', '" + user_data['password'] + "')"
+      # usernameact
+        q = "INSERT INTO User_Table VALUES ('" + user_data['username'] + "', '" + user_data['password']+ "', '" + user_data['usernameact'] + "')"
         conn.execute(q)
         conn.commit()
 
@@ -294,10 +299,14 @@ def login():
     user = conn.execute('SELECT * FROM User_Table WHERE username="' + user_data["username"] + '"').fetchall()
     if len(user) == 1:  # ==1 as measure to check sql injection
         password = user[0][1]
+        # usernameact = user[0][2]
         if password == user_data["password"]:
             return jsonify({'response': 'success',
                             'version': ver,
-                            'user': user[0][0]})
+                            'user': user[0][0],
+                            'usernameact': user[0][2]
+                            }
+                           )
         else:
             return jsonify({'response': 'failed',
                             'version': ver,
@@ -407,7 +416,7 @@ def get_image():
     if image_data == "":
         abort(401)
     print("/get_image", "=" * 20, "'", image_data, "'")
-    return send_file(dir_path + "/dataset_with_circle/" + image_data)
+    return send_file(image_path + image_data)
 
 
 # APP ====================================================================================
@@ -417,119 +426,6 @@ def send_app():
     return send_file(dir_path + '/index.html')
 
 
-## Iphone
-@app.route("/get_manifest")
-def send_manifest():
-    return send_file(dir_path + '/manifest.plist', as_attachment=True)
-
-
-@app.route("/get_ipa")
-def send_ipa():
-    return send_file(dir_path + '/Data Labelling API.ipa', as_attachment=True)
-
-
-## Ipad
-@app.route("/get_manifest_ipad")
-def send_ipad_manifest():
-    return send_file(dir_path + '/ipad_manifest.plist', as_attachment=True)
-
-
-@app.route("/get_ipa_ipad")
-def send_ipad_ipa():
-    return send_file(dir_path + '/Data Labelling API Ipad.ipa', as_attachment=True)
-
-
-## Images
-@app.route("/get_57x57")
-def send_sm_im():
-    return send_file(dir_path + '/Image.57x57.png', as_attachment=True)
-
-
-@app.route("/get_512x512")
-def send_lg_im():
-    return send_file(dir_path + '/Image.512x512.jpg', as_attachment=True)
-
-
-# =============================================================================================
-
-# needed?? ====================================================================================
-
-@app.route("/tsne", methods=['GET'])
-def tsne():
-    return send_file(dir_path + '/test.apk')
-
-
-# Iphone ======================================================================================
-@app.route("/tsne_ios")
-def send_tsne_app():
-    return send_file(dir_path + '/index_tsne.html')
-
-
-@app.route("/get_tsne_manifest")
-def send_tsne_manifest():
-    return send_file(dir_path + '/tsne_manifest.plist', as_attachment=True)
-
-
-@app.route("/get_ipa_tsne")
-def send_tsne_ipa():
-    return send_file(dir_path + '/Unity-iPhone.ipa', as_attachment=True)
-
-
-## Embryo app
-@app.route("/embryo_app")
-def send_embryo_app():
-    return send_file(dir_path + '/index_embryo.html')
-
-
-@app.route("/get_embryo_manifest")
-def send_embryo_manifest():
-    return send_file(dir_path + '/embryo_manifest.plist', as_attachment=True)
-
-
-@app.route("/get_embryo_ipa")
-def send_embryo_ipa():
-    return send_file(dir_path + '/embryo2.ipa', as_attachment=True)
-
-
-## ova app
-@app.route("/ovulation_app")
-def send_ova_app():
-    return send_file(dir_path + '/index_ova.html')
-
-
-@app.route("/get_ova_manifest")
-def send_ova_manifest():
-    return send_file(dir_path + '/ovumanifest.plist', as_attachment=True)
-
-
-@app.route("/get_ova_ipa")
-def send_ova_ipa():
-    return send_file(dir_path + '/OvulationApp.ipa', as_attachment=True)
-
-
-## MGH App
-@app.route("/get_mgh_manifest")
-def send_mgh_manifest():
-    return send_file(dir_path + '/mgh_manifest.plist', as_attachment=True)
-
-
-@app.route("/get_mgh_ipa")
-def send_mgh_ipa():
-    return send_file(dir_path + '/mgh2.ipa', as_attachment=True)
-
-
-@app.route("/get_mgh_ipa2")
-def send_mgh_ipa2():
-    return send_file(dir_path + '/mgh2.ipa', as_attachment=True)
-
-
-# =============================================================================================
-@app.route("/get_windows_app")
-def get_windows_app():
-    return send_file(dir_path + '/Data Labelling App.exe', as_attachment=True)
-
-
-# =============================================================================================
 
 
 @app.route("/give_label", methods=['POST'])
@@ -864,4 +760,4 @@ with app.app_context():
 if __name__ == "__main__":
     # context = ('certificate.crt', 'ssl.key')
     # app.run(host='0.0.0.0', port=5000, ssl_context=context)
-    app.run(host='0.0.0.0', port=5000,debug=True)
+    app.run(host='0.0.0.0', port=8000,debug=True)
