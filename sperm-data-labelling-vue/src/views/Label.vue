@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout class="temp" row wrap>
+    <v-layout class="temp" row >
       <v-flex md6 sm6 xs12>
         <img
           v-if="batch_completed"
@@ -32,7 +32,7 @@
         <!--{{slide_id}}-->
         <!--{{user_id}}-->
       </v-flex>
-      <v-flex md6 sm6 xs12>
+      <v-flex md6 sm6 xs12 class="ann_class">
         <!--<v-layout align-space-around justify-space-around  row fill-height fill-width wrap>-->
         <!--<v-flex md12 xs4>-->
         <!--<v-btn color="success">Normal</v-btn>-->
@@ -133,11 +133,11 @@
         <!--          :label="`Distal Mid-Piece Reflex`"-->
         <!--        ></v-checkbox>-->
 
-        <v-container class="grey lighten-5">
+        <v-container class="grey lighten-5 pa-3 "  >
           <v-divider></v-divider>
           <v-divider></v-divider>
-          <v-row>
-            <v-col>
+          <v-row align-content="center" align="center" class="pa-1"  >
+            <v-col align="center"  class="pa-1"  offset-md="4">
               <!--              <v-radio-->
               <!--                label="Normal Sperm"-->
               <!--                value="normal_sperm"-->
@@ -166,7 +166,7 @@
                 :label="`Normal Sperm`"
                 :value="models[`Normal Sperm`]"
               ></v-checkbox>
-            </v-col>
+            </v-col >
             <!--            <v-col>-->
             <!--              <v-btn-toggle-->
             <!--                v-model="toggle_abnormal_sperm"-->
@@ -194,8 +194,8 @@
           <v-divider></v-divider>
           <v-divider></v-divider>
 
-          <v-row>
-            <v-col>
+          <v-row   class="pa-0">
+            <v-col   class="pa-0"         offset-md="1">
               <v-checkbox
                 v-model="check_model"
                 :label="`Proximal Droplets`"
@@ -203,7 +203,7 @@
               ></v-checkbox>
             </v-col>
 
-            <v-col>
+            <v-col   class="pa-0">
               <v-checkbox
                 v-model="check_model"
                 :label="`Distal Droplets`"
@@ -212,8 +212,8 @@
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col>
+          <v-row   class="pa-0">
+            <v-col   class="pa-0 "  offset-md="1">
               <v-checkbox
                 v-model="check_model"
                 :label="`Distal Mid-Piece Reflex`"
@@ -221,7 +221,7 @@
               ></v-checkbox>
             </v-col>
 
-            <v-col>
+            <v-col   class="pa-0">
               <v-checkbox
                 v-model="check_model"
                 :label="`Clumped Sperm`"
@@ -232,9 +232,10 @@
           <v-divider></v-divider>
           <v-divider></v-divider>
 
-          <v-row>
-            <v-col>
+          <v-row   class="pa-0">
+            <v-col   class="pa-0" offset-md="1">
               <v-list
+
                 align="center"
                 class="justify-center grey lighten-5"
                 v-for="item in Headitems"
@@ -264,7 +265,7 @@
                 <v-list-item v-for="child in item.items" :key="child.title">
                   <!--              <v-list-item-content>-->
 
-                  <v-checkbox
+                  <v-checkbox   class="pa-0"
                     v-model="check_model"
                     :label="child.title"
                     :value="models[child.title]"
@@ -328,6 +329,21 @@
               </v-list>
             </v-col>
           </v-row>
+          <v-divider></v-divider>
+          <v-divider></v-divider>
+
+          <v-row  class="pa-1">
+            <v-col  class="pa-1" offset-md="4">
+              <v-checkbox
+                class="pa-1"
+                v-model="check_model"
+                :label="`Other Abnormalities`"
+                :value="models[`Other Abnormalities`]"
+              ></v-checkbox>
+            </v-col>
+
+          </v-row>
+
           <v-divider></v-divider>
           <v-divider></v-divider>
           <v-row>
@@ -441,7 +457,8 @@ export default {
       "Coiled tail": "coiled_tail",
       "Missing tail": "missing_tail",
       "Bent tail": "bent_tail",
-      "Clumped Sperm": "clumped_sperm"
+      "Clumped Sperm": "clumped_sperm",
+      "Other Abnormalities": "other_abnormalities"
     },
 
     check_model: [],
@@ -804,6 +821,12 @@ export default {
 </script>
 
 <style>
+.temp{
+  display: flex;
+  height: 100%;
+
+
+}
 .theme--light.v-divider {
   border-color: rgba(0, 0, 0, 1) !important;
 }
@@ -813,13 +836,15 @@ export default {
 
   /*height: 100px;*/
 }
-
+.ann_class{
+  /*max-height: 100vh;*/
+}
 .image {
   height: 100%;
   display: block;
   margin: 0 auto;
   /* object-fit: cover; */
-  /* max-height: 60vh; */
+   max-height: 80vh;
   /* height: 30px; */
   /* width: 30px; */
   /* width: 100v÷w; */
